@@ -20,21 +20,21 @@ Use CLI command to create application as a **monorepo project** inside **angular
 ng generate application <header-app>
 ```
 
-## Step 3 - Creating "Custom Element"
+### Step 3 - Creating "Custom Element"
 
 In order to make `header-app` as a customer element we need to import `Injector` from the `@angular/core` package and `createCustomElement` from the `@angular/elements` package:
 
 Make the necessery changes in `projects/header-app/src/index.html`
-```
+```ruby
 <header-app></header-app>
 <base href="./">
 ```
 Specify **ngZone** as **noop** in `projects/header-app/src/main.ts`
-```
+```ruby
 platformBrowserDynamic().bootstrapModule(AppModule, {ngZone: 'noop'})
 ```
 Create AppComponent as a cunstom element in `projects/header-app/src/app/app.module.ts`
-```
+```ruby
 import { NgModule, Injector } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 
@@ -48,18 +48,20 @@ export class AppModule {
 }
 ```
 Remove `AppComponent` from `bootstrap` and consider as a `entryComponents` 
-```
+```ruby
 bootstrap: [],
 entryComponents: [AppComponent]
 ```
 
-## Step 4 - Creating a Angular Web Component with Ngx-build-plus
-Use ngx-build-plus to compile Angular Elements
+### Step 4 - Creating a Angular Web Component with Ngx-build-plus
+Use `ngx-build-plus` to compile Angular Elements
 
 ```
 ng add ngx-build-plus
-
-Note: That will change 
+```
+Note: 
+```
+That will change 
       from => "builder": "@angular-devkit/build-angular:browser"
       to => "builder": "ngx-build-plus:browser"
 
@@ -71,8 +73,11 @@ Adds webcomponent polyfills to your app
 ng g ngx-build-plus:wc-polyfill
 or 
 ng g ngx-build-plus:wc-polyfill --project myProject
+```
 
-Note: That will change 
+Note: 
+```
+That will change 
       from => "scripts": []
       to => "scripts": [
               {
