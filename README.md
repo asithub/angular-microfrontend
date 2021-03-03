@@ -62,11 +62,11 @@ Use `ngx-build-plus` to compile Angular Elements
 ng add ngx-build-plus
 ```
 Note: 
-*That will change the `"builder"` from `@angular-devkit/build-angular:browser` to `ngx-build-plus:browser`
-*And will add `"ngx-build-plus": "^11.0.0"`, as a dependencies
-```
+* In `angular.json` file, will see `"builder"` from `@angular-devkit/build-angular:browser` to `ngx-build-plus:browser`
+* In `package.json` will add `"ngx-build-plus": "^11.0.0"`, as a dependencies
 
 Adds webcomponent polyfills to your app
+
 ```ruby
 ng g ngx-build-plus:wc-polyfill
 or 
@@ -74,21 +74,19 @@ ng g ngx-build-plus:wc-polyfill --project myProject
 ```
 
 Note: 
-```
-That will change 
-from => "scripts": []
-to => "scripts": [
-        {
-          "bundleName": "polyfill-webcomp-es5",
-          "input": "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"
-        },
-        {
-          "bundleName": "polyfill-webcomp",
-          "input": "node_modules/@webcomponents/webcomponentsjs/bundles/webcomponents-sd-ce-pf.js"
-        }
-      ]
+* In `angular.json` file, will see `"scripts"` as below
+"scripts": [
+  {
+    "bundleName": "polyfill-webcomp-es5",
+    "input": "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"
+  },
+  {
+    "bundleName": "polyfill-webcomp",
+    "input": "node_modules/@webcomponents/webcomponentsjs/bundles/webcomponents-sd-ce-pf.js"
+  }
+]
 
-And will add "@webcomponents/webcomponentsjs": "^2.5.0", as a dependencies
+* And will add "@webcomponents/webcomponentsjs": "^2.5.0", as a dependencies
 ```
 
 Execute the externals: Updates your app to use webpack externals
