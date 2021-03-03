@@ -62,12 +62,8 @@ Use `ngx-build-plus` to compile Angular Elements
 ng add ngx-build-plus
 ```
 Note: 
-```
-That will change 
-from => "builder": "@angular-devkit/build-angular:browser"
-to => "builder": "ngx-build-plus:browser"
-
-And will add "ngx-build-plus": "^11.0.0", as a dependencies
+*That will change the `"builder"` from `@angular-devkit/build-angular:browser` to `ngx-build-plus:browser`
+*And will add `"ngx-build-plus": "^11.0.0"`, as a dependencies
 ```
 
 Adds webcomponent polyfills to your app
