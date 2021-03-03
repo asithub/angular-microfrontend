@@ -2,29 +2,38 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.0.
 
-## Development server for Root app container
+# Angular Elements
+Angular elements are Angular components packaged as **custom elements** (also called Web Components), a web standard for defining new HTML elements in a framework-agnostic way.
+```
+ng add @angular/elements
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Step 1 - Create CLI project
+Use `ng new <angular-mocrofrontend>` CLI command to create new angular project as a wrapper.
 
-## Adding "Angular Elements" to the project
-`ng add @angular/elements`
-
-## Create "Project" inside the root app
-To generate `header-app` application inside a folder as a project
-
-`ng generate application <name>`
+## Step 2 - Create Monorepo Project inside the root app
+Use `ng generate application <header-app>` to create application as a **monorepo project** inside **angular-microfrontend** project.
 
 ## Creating "Custom Element"
 
 In order to make `header-app` as a customer element we need to import `Injector` from the `@angular/core` package and `createCustomElement` from the `@angular/elements` package:
+
+File: projects/header-app/src/index.html
 ```
-File: app.module.ts
-import { NgModule, Injector } from '@angular/core';
-import { createCustomElement } from '@angular/elements';
+<header-app></header-app>
+<base href="./">
 ```
 
+File: projects/header-app/src/main.ts
 ```
-File: app.module.ts
+platformBrowserDynamic().bootstrapModule(AppModule, **{ngZone: 'noop'}**)
+```
+
+File: projects/header-app/src/app/app.module.ts
+```
+import { NgModule, Injector } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
+
 export class AppModule {
   constructor(private injector: Injector){}
   
@@ -34,11 +43,7 @@ export class AppModule {
   }
 }
 ```
-```
-File: index.html
-<header-app></header-app>
-<base href="./">
-```
+
 
 ## Creating a Angular Web Component with Ngx-build-plus
 Use ngx-build-plus to compile Angular Elements
