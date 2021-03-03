@@ -74,7 +74,7 @@ ng g ngx-build-plus:wc-polyfill --project myProject
 ```
 
 Note: 
-* In `angular.json` file, will see `"scripts"` as below
+In `angular.json` file, will see `"scripts"` as below
 "scripts": [
   {
     "bundleName": "polyfill-webcomp-es5",
@@ -85,9 +85,7 @@ Note:
     "input": "node_modules/@webcomponents/webcomponentsjs/bundles/webcomponents-sd-ce-pf.js"
   }
 ]
-
-* And will add "@webcomponents/webcomponentsjs": "^2.5.0", as a dependencies
-```
+And will add "@webcomponents/webcomponentsjs": "^2.5.0", as a dependencies
 
 Execute the externals: Updates your app to use webpack externals
 ```ruby
