@@ -8,28 +8,32 @@ Angular elements are Angular components packaged as **custom elements** (also ca
 ng add @angular/elements
 ```
 
-## Step 1 - Create CLI project
-Use `ng new <angular-mocrofrontend>` CLI command to create new angular project as a wrapper.
+### Step 1 - Create CLI project
+Use CLI command to create new angular project as a wrapper.
+```
+ng new <angular-mocrofrontend>
+```
 
-## Step 2 - Create Monorepo Project inside the root app
-Use `ng generate application <header-app>` to create application as a **monorepo project** inside **angular-microfrontend** project.
+### Step 2 - Create Monorepo Project inside the root app
+Use CLI command to create application as a **monorepo project** inside **angular-microfrontend** project.
+```
+ng generate application <header-app>
+```
 
-## Creating "Custom Element"
+## Step 3 - Creating "Custom Element"
 
 In order to make `header-app` as a customer element we need to import `Injector` from the `@angular/core` package and `createCustomElement` from the `@angular/elements` package:
 
-File: projects/header-app/src/index.html
+Make the necessery changes in `projects/header-app/src/index.html`
 ```
 <header-app></header-app>
 <base href="./">
 ```
-
-File: projects/header-app/src/main.ts
+Specify **ngZone** as **noop** in `projects/header-app/src/main.ts`
 ```
-platformBrowserDynamic().bootstrapModule(AppModule, **{ngZone: 'noop'}**)
+platformBrowserDynamic().bootstrapModule(AppModule, {ngZone: 'noop'})
 ```
-
-File: projects/header-app/src/app/app.module.ts
+Create AppComponent as a cunstom element in `projects/header-app/src/app/app.module.ts`
 ```
 import { NgModule, Injector } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
@@ -43,9 +47,13 @@ export class AppModule {
   }
 }
 ```
+Remove `AppComponent` from `bootstrap` and consider as a `entryComponents` 
+```
+bootstrap: [],
+entryComponents: [AppComponent]
+```
 
-
-## Creating a Angular Web Component with Ngx-build-plus
+## Step 4 - Creating a Angular Web Component with Ngx-build-plus
 Use ngx-build-plus to compile Angular Elements
 
 ```
