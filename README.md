@@ -4,19 +4,19 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 # Angular Elements
 Angular elements are Angular components packaged as **custom elements** (also called Web Components), a web standard for defining new HTML elements in a framework-agnostic way.
-```
+```ruby
 ng add @angular/elements
 ```
 
 ### Step 1 - Create CLI project
 Use CLI command to create new angular project as a wrapper.
-```
+```ruby
 ng new <angular-mocrofrontend>
 ```
 
 ### Step 2 - Create Monorepo Project inside the root app
 Use CLI command to create application as a **monorepo project** inside **angular-microfrontend** project.
-```
+```ruby
 ng generate application <header-app>
 ```
 
@@ -29,10 +29,12 @@ Make the necessery changes in `projects/header-app/src/index.html`
 <header-app></header-app>
 <base href="./">
 ```
+
 Specify **ngZone** as **noop** in `projects/header-app/src/main.ts`
 ```ruby
 platformBrowserDynamic().bootstrapModule(AppModule, {ngZone: 'noop'})
 ```
+
 Create AppComponent as a cunstom element in `projects/header-app/src/app/app.module.ts`
 ```ruby
 import { NgModule, Injector } from '@angular/core';
@@ -56,20 +58,20 @@ entryComponents: [AppComponent]
 ### Step 4 - Creating a Angular Web Component with Ngx-build-plus
 Use `ngx-build-plus` to compile Angular Elements
 
-```
+```ruby
 ng add ngx-build-plus
 ```
 Note: 
 ```
 That will change 
-      from => "builder": "@angular-devkit/build-angular:browser"
-      to => "builder": "ngx-build-plus:browser"
+from => "builder": "@angular-devkit/build-angular:browser"
+to => "builder": "ngx-build-plus:browser"
 
-      And will add "ngx-build-plus": "^11.0.0", as a dependencies
+And will add "ngx-build-plus": "^11.0.0", as a dependencies
 ```
 
 Adds webcomponent polyfills to your app
-```
+```ruby
 ng g ngx-build-plus:wc-polyfill
 or 
 ng g ngx-build-plus:wc-polyfill --project myProject
@@ -78,23 +80,23 @@ ng g ngx-build-plus:wc-polyfill --project myProject
 Note: 
 ```
 That will change 
-      from => "scripts": []
-      to => "scripts": [
-              {
-                "bundleName": "polyfill-webcomp-es5",
-                "input": "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"
-              },
-              {
-                "bundleName": "polyfill-webcomp",
-                "input": "node_modules/@webcomponents/webcomponentsjs/bundles/webcomponents-sd-ce-pf.js"
-              }
-            ]
+from => "scripts": []
+to => "scripts": [
+        {
+          "bundleName": "polyfill-webcomp-es5",
+          "input": "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"
+        },
+        {
+          "bundleName": "polyfill-webcomp",
+          "input": "node_modules/@webcomponents/webcomponentsjs/bundles/webcomponents-sd-ce-pf.js"
+        }
+      ]
 
-      And will add "@webcomponents/webcomponentsjs": "^2.5.0", as a dependencies
+And will add "@webcomponents/webcomponentsjs": "^2.5.0", as a dependencies
 ```
 
 Execute the externals: Updates your app to use webpack externals
-```
+```ruby
 ng g ngx-build-plus:externals
 or 
 ng g ngx-build-plus:externals --project myProject
